@@ -1,4 +1,4 @@
-# nearBuy
+# nearstBuy
 ## 这个仓库是就近买java后端项目
 
 ## 开发提示
