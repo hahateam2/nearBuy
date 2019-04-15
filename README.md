@@ -11,10 +11,10 @@
  
  ## 项目运行环境介绍
  
- jdk 10.0.2
- apache-maven-3.6.0
- mysql server
- tomcat 8.0
+ jdk 10.0.2 </br>
+ apache-maven-3.6.0 </br>
+ mysql server </br>
+ tomcat 8.0 </br>
  
  # 项目需求：
  ### 1.买闲置物品
