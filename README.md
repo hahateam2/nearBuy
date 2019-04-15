@@ -1,6 +1,7 @@
 # nearstBuy
-## 这个仓库是就近买java后端项目
+## 这个仓库是就近卖java后端项目
 
+此项目使用的IDE是idea
 ## 开发提示
 
  如果你想添加自己手写的mapper.xml 文件实现特定的sql操作，只能添加在 src\main\resources\mapper\selfCreateMapper 这个，目录下，因为mapper文件夹下的xml文件</br>
