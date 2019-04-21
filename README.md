@@ -1,8 +1,8 @@
 # nearstBuy
 ## 这个仓库是就近卖java后端项目
 
-<a href="https://github.com/hahateam2/nearBuy/blob/master/restfulAPIList.md"><span style="font-size:12px;color:#CC3333">APP端API列表</span></a>&nbsp;&nbsp;&nbsp;
-<a href="https://github.com/hahateam2/nearBuy/blob/master/AdminRestfulApi.md"><span style="font-size:12px;color:#CC3333">管理端API列表</span></a>
+<span style="font-size:12px;color:#CC3333"><a href="https://github.com/hahateam2/nearBuy/blob/master/restfulAPIList.md">APP端API列表</a></span>&nbsp;&nbsp;&nbsp;
+<span style="font-size:12px;color:#CC3333"><a href="https://github.com/hahateam2/nearBuy/blob/master/AdminRestfulApi.md">管理端API列表</a></span>
 
 此项目使用的IDE是idea
 ## 开发提示
