@@ -1,11 +1,14 @@
 package com.dao;
 
+import com.model.Collection;
 import com.model.Comment;
 import com.model.CommentExample;
 import java.util.List;
+
+import com.model.Order;
 import org.apache.ibatis.annotations.Param;
 
-public interface CommentMapper {
+public interface CommentMapper extends BaseDao<Comment>{
     long countByExample(CommentExample example);
 
     int deleteByExample(CommentExample example);
@@ -17,6 +20,8 @@ public interface CommentMapper {
     int insertSelective(Comment record);
 
     List<Comment> selectByExample(CommentExample example);
+
+    List<Comment> selectByAllBypage();
 
     Comment selectByPrimaryKey(String id);
 

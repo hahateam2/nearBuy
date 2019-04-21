@@ -1,11 +1,13 @@
 package com.dao;
 
+import com.model.Comment;
+import com.model.Goods;
 import com.model.Goodsimage;
 import com.model.GoodsimageExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface GoodsimageMapper {
+public interface GoodsimageMapper extends BaseDao<Goodsimage>{
     long countByExample(GoodsimageExample example);
 
     int deleteByExample(GoodsimageExample example);
@@ -17,6 +19,8 @@ public interface GoodsimageMapper {
     int insertSelective(Goodsimage record);
 
     List<Goodsimage> selectByExample(GoodsimageExample example);
+
+    List<Goodsimage> selectByAllBypage();
 
     Goodsimage selectByPrimaryKey(String id);
 

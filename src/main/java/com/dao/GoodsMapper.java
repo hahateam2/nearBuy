@@ -8,7 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 @Mapper
-public interface GoodsMapper {
+public interface GoodsMapper extends BaseDao<Goods>{
+
     long countByExample(GoodsExample example);
 
     int deleteByExample(GoodsExample example);
@@ -19,7 +20,7 @@ public interface GoodsMapper {
 
     int insertSelective(Goods record);
 
-    List<Goods> selectByExample(GoodsExample example);
+    List<Goods> selectByAllBypage();
 
     Goods selectByPrimaryKey(String id);
 

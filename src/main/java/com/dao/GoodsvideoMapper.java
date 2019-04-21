@@ -1,11 +1,13 @@
 package com.dao;
 
+import com.model.Goods;
 import com.model.Goodsvideo;
 import com.model.GoodsvideoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface GoodsvideoMapper {
+public interface GoodsvideoMapper extends BaseDao<Goodsvideo>{
+
     long countByExample(GoodsvideoExample example);
 
     int deleteByExample(GoodsvideoExample example);
@@ -13,7 +15,7 @@ public interface GoodsvideoMapper {
     int deleteByPrimaryKey(String id);
 
     int insert(Goodsvideo record);
-
+    List<Goodsvideo> selectByAllBypage();
     int insertSelective(Goodsvideo record);
 
     List<Goodsvideo> selectByExample(GoodsvideoExample example);

@@ -1,11 +1,13 @@
 package com.dao;
 
+import com.model.Goods;
 import com.model.User;
 import com.model.UserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface UserMapper {
+public interface UserMapper extends BaseDao<User>{
+
     long countByExample(UserExample example);
 
     int deleteByExample(UserExample example);
@@ -17,7 +19,7 @@ public interface UserMapper {
     int insertSelective(User record);
 
     List<User> selectByExample(UserExample example);
-
+    List<User> selectByAllBypage();
     User selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);

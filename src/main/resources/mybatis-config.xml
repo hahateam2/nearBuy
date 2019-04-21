@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd"
+        >
 <configuration>
 
     <mappers>
 
-        <mapper resource="mapper/GoodsMapper.xml"/>
+        <!--<mapper resource="mapper/*.xml"/>-->
+        <mapper resource="mapper/selfCreatMapper/GoodsMapper.xml"/>
+        <!--<mapper resource="mapper/UserMapper.xml"/>-->
+        <mapper resource="mapper/selfCreatMapper/UserMapper.xml"/>
+
+        <!--<mapper resource="mapper/UserMapper.xml"/>-->
+        <!--<mapper resource="mapper/selfCreatMapper/UserMapper.xml"/>-->
+
+        <!--<mapper resource="mapper/UserMapper.xml"/>-->
+        <!--<mapper resource="mapper/selfCreatMapper/UserMapper.xml"/>-->
+
+        <!--<mapper resource="mapper/UserMapper.xml"/>-->
+        <!--<mapper resource="classpath:mapper/selfCreatMapper/*.xml"/>-->
     </mappers>
 </configuration>

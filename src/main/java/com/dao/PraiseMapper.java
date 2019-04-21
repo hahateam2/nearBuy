@@ -1,11 +1,12 @@
 package com.dao;
 
+import com.model.Order;
 import com.model.Praise;
 import com.model.PraiseExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface PraiseMapper {
+public interface PraiseMapper extends BaseDao<Praise>{
     long countByExample(PraiseExample example);
 
     int deleteByExample(PraiseExample example);
@@ -19,6 +20,8 @@ public interface PraiseMapper {
     List<Praise> selectByExample(PraiseExample example);
 
     Praise selectByPrimaryKey(String id);
+
+    List<Praise> selectByAllBypage();
 
     int updateByExampleSelective(@Param("record") Praise record, @Param("example") PraiseExample example);
 
