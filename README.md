@@ -1,6 +1,9 @@
 # nearstBuy
 ## 这个仓库是就近卖java后端项目
 
+<a href="https://github.com/hahateam2/nearBuy/blob/master/AdminRestfulApi.md">APP端API列表</a>&nbsp;
+<a href="https://github.com/hahateam2/nearBuy/blob/master/AdminRestfulApi.md">管理端API列表</a>
+
 此项目使用的IDE是idea
 ## 开发提示
 
