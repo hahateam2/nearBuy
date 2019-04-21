@@ -1,4 +1,4 @@
-# 就近买API列表
+# 就近买 APP端 API列表
 
 ## restful API 列表
 
