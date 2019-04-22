@@ -9,6 +9,7 @@ import com.service.UserService;
 import com.util.UUIDgenarater;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -20,6 +21,13 @@ public class AdminUserController extends BaseController<User>{
 
     @Autowired
     private UserMapper userMapper;
+
+
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public String index(Model model) {
+        model.addAttribute("name","用户");
+        return "PCfront/index";
+    }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody

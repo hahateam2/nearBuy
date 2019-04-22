@@ -71,4 +71,12 @@
 
 
 
+    <!-- 第一中配置freeMarker视图解析器 方式，将配置信息写在 freemarker.properties 中 -->
+
+
+
+
+
+
+
 </beans>

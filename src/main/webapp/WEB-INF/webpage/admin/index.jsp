@@ -3,9 +3,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>首页</title>
+    <title>后台首页</title>
 </head>
 <body>
-<h1> 欢迎来到就近买 </h1>
+
 </body>
 </html>
