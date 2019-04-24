@@ -7,6 +7,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="depict" jdbcType="VARCHAR" property="depict" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, userId, name, depict, createTime
+    id, userId, name, depict, createTime,status
   </sql>
   <select id="selectByExample" parameterType="com.model.DonateExample" resultMap="BaseResultMap">
     select
@@ -82,6 +83,9 @@
     </if>
     <if test="orderByClause != null">
       order by ${orderByClause}
+    </if>
+    <if test="page != null">
+      limit ${page.startRow},${page.endRow}
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -102,9 +106,9 @@
   </delete>
   <insert id="insert" parameterType="com.model.Donate">
     insert into donate (id, userId, name, 
-      depict, createTime)
+      depict, createTime,status)
     values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{depict,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
+      #{depict,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP},#{status,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.model.Donate">
     insert into donate
@@ -124,6 +128,9 @@
       <if test="createtime != null">
         createTime,
       </if>
+      <if test="status != null">
+        status,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -140,6 +147,9 @@
       </if>
       <if test="createtime != null">
         #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -167,6 +177,9 @@
       <if test="record.createtime != null">
         createTime = #{record.createtime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -179,6 +192,7 @@
       name = #{record.name,jdbcType=VARCHAR},
       depict = #{record.depict,jdbcType=VARCHAR},
       createTime = #{record.createtime,jdbcType=TIMESTAMP}
+      status = #{record.status,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -198,6 +212,9 @@
       <if test="createtime != null">
         createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -207,6 +224,7 @@
       name = #{name,jdbcType=VARCHAR},
       depict = #{depict,jdbcType=VARCHAR},
       createTime = #{createtime,jdbcType=TIMESTAMP}
+      status = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

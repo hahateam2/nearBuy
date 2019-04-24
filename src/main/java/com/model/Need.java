@@ -5,6 +5,8 @@ import java.util.Date;
 public class Need {
     private String id;
 
+    private String userid;
+
     private String name;
 
     private String depict;
@@ -21,6 +23,14 @@ public class Need {
 
     public void setId(String id) {
         this.id = id == null ? null : id.trim();
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
     public String getName() {
@@ -61,5 +71,18 @@ public class Need {
 
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Need{" +
+                "id='" + id + '\'' +
+                ", userid='" + userid + '\'' +
+                ", name='" + name + '\'' +
+                ", depict='" + depict + '\'' +
+                ", addressid='" + addressid + '\'' +
+                ", createtime=" + createtime +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

@@ -3,6 +3,7 @@
 <mapper namespace="com.dao.NeedMapper">
   <resultMap id="BaseResultMap" type="com.model.Need">
     <id column="id" jdbcType="VARCHAR" property="id" />
+    <id column="userId" jdbcType="VARCHAR" property="userid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="depict" jdbcType="VARCHAR" property="depict" />
     <result column="addressId" jdbcType="VARCHAR" property="addressid" />
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, depict, addressId, createTime, status
+    id, userId, name, depict, addressId, createTime, status
   </sql>
   <select id="selectByExample" parameterType="com.model.NeedExample" resultMap="BaseResultMap">
     select
@@ -83,6 +84,9 @@
     </if>
     <if test="orderByClause != null">
       order by ${orderByClause}
+    </if>
+    <if test="page != null">
+      limit ${page.startRow},${page.endRow}
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -102,10 +106,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.model.Need">
-    insert into need (id, name, depict, 
+    insert into need (id, userId,name, depict,
       addressId, createTime, status
       )
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{depict,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{depict,jdbcType=VARCHAR},
       #{addressid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}
       )
   </insert>
@@ -114,6 +118,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="userid != null">
+        userId,
       </if>
       <if test="name != null">
         name,
@@ -134,6 +141,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -164,6 +174,9 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=VARCHAR},
       </if>
+      <if test="record.userid != null">
+        userId = #{record.userid,jdbcType=VARCHAR},
+      </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
@@ -187,6 +200,7 @@
   <update id="updateByExample" parameterType="map">
     update need
     set id = #{record.id,jdbcType=VARCHAR},
+      userId = #{record.userid,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       depict = #{record.depict,jdbcType=VARCHAR},
       addressId = #{record.addressid,jdbcType=VARCHAR},
@@ -201,6 +215,9 @@
     <set>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=VARCHAR},
       </if>
       <if test="depict != null">
         depict = #{depict,jdbcType=VARCHAR},
@@ -219,7 +236,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.model.Need">
     update need
-    set name = #{name,jdbcType=VARCHAR},
+    set userId = #{userid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
       depict = #{depict,jdbcType=VARCHAR},
       addressId = #{addressid,jdbcType=VARCHAR},
       createTime = #{createtime,jdbcType=TIMESTAMP},

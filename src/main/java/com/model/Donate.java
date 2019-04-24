@@ -13,6 +13,18 @@ public class Donate {
 
     private Date createtime;
 
+    private String status;
+
+
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public String getId() {
         return id;
     }
@@ -51,5 +63,18 @@ public class Donate {
 
     public void setCreatetime(Date createtime) {
         this.createtime = createtime;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Donate{" +
+                "id='" + id + '\'' +
+                ", userid='" + userid + '\'' +
+                ", name='" + name + '\'' +
+                ", depict='" + depict + '\'' +
+                ", createtime=" + createtime +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

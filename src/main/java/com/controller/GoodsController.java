@@ -22,6 +22,7 @@ public class GoodsController extends BaseController<Goods> {
     private GoodsService goodsService;
     @Autowired
     private GoodsMapper  goodsMapper;
+
     private final static Logger logger= LoggerFactory.getLogger(GoodsController.class);
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
@@ -54,8 +55,5 @@ public class GoodsController extends BaseController<Goods> {
     public MsgBean deleteById(@PathVariable("id") String id) {
         return super.deleteById(id, goodsService,goodsMapper);
     }
-
-
-
 
 }
