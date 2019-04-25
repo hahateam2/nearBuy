@@ -86,12 +86,15 @@ public class NeedServiceImpl implements NeedService{
         NeedExample example = new NeedExample();
         NeedExample.Criteria criteria = example.createCriteria();
 
-        if(need.getName() != null && !"".equals(need.getName()))
+        if(need.getName() != null && !"".equals(need.getName())){
             criteria.andNameLikeOrDepictLike(need.getName());
-        if(need.getUserid() != null && !"".equals(need.getUserid()))
+        }
+        if(need.getUserid() != null && !"".equals(need.getUserid())){
             criteria.andUseridEqualTo(need.getUserid());
-        if(need.getStatus() != null && !"".equals(need.getStatus()))
+        }
+        if(need.getStatus() != null && !"".equals(need.getStatus())) {
             criteria.andStatusEqualTo(need.getStatus());
+        }
 
         return pageExecute(example,page);
     }

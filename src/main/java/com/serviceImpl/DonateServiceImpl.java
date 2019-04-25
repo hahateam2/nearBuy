@@ -30,10 +30,10 @@ public class DonateServiceImpl implements DonateService {
         }
         page1.setTotalRows((int)donateMapper.countByExample(example));
 
-        List<Donate> needs = donateMapper.selectByExample(example);
+        List<Donate> donates = donateMapper.selectByExample(example);
         Map<String,Object> map = new HashMap<>();
         map.put("page",page1);
-        map.put("needs",needs);
+        map.put("donates",donates);
 
         return new MsgBean(true,"查询数据成功",map);
     }
@@ -82,7 +82,7 @@ public class DonateServiceImpl implements DonateService {
 
     @Override
     public MsgBean selectByTerm(Donate donate, int page) {
-        DonateExample example = new DonateExample();
+        DonateExample example =new DonateExample();
         DonateExample.Criteria criteria = example.createCriteria();
 
         if(donate.getName() != null && !"".equals(donate.getName())) {

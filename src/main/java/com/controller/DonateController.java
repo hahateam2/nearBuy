@@ -22,7 +22,7 @@ public class DonateController {
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody
     public MsgBean queryById(@PathVariable String id) {
-        logger.info("收到一个请求参数为{id:"+id+"}");
+        logger.info("收到一个/请求参数为{id:"+id+"}");
 
         return donateService.selectById(id);
     }
@@ -30,6 +30,7 @@ public class DonateController {
     @RequestMapping(value = "all/{page}",method = RequestMethod.GET)
     @ResponseBody
     public MsgBean queryAllByPage(@PathVariable("page") int page) {
+        logger.info("收到一个all请求参数为{page:"+page+"}");
 
 //        return super.queryAllByPage(page, count, needService,needMapper);
         return donateService.selectAllByPage(page);
@@ -46,7 +47,7 @@ public class DonateController {
     @RequestMapping(value = "/{userId}/{page}",method = RequestMethod.GET)
     @ResponseBody
     public MsgBean queryUserDonate(@PathVariable String userId, @PathVariable int page) {
-        logger.info("收到一个all请求参数为{userId:"+userId+"}");
+        logger.info("收到一个/请求参数为{userId:"+userId+"}");
 
         return donateService.selectByUserId(userId,page);
     }
@@ -54,16 +55,16 @@ public class DonateController {
     @RequestMapping(value = "/{userId}/{status}/{page}",method = RequestMethod.GET)
     @ResponseBody
     public MsgBean queryUserDonateByStatus(@PathVariable String userId, @PathVariable String status, @PathVariable int page) {
-        logger.info("收到一个status请求参数为{userId:"+userId+"} {status:"+status+"}");
+        logger.info("收到一个/请求参数为{userId:"+userId+"} {status:"+status+"}");
 
         return donateService.selectByUserId(userId, status, page);
     }
 
 
-    @RequestMapping(value = "/query/{page}" ,method = RequestMethod.GET)
+    @RequestMapping(value = "/search/{page}" ,method = RequestMethod.GET)
     @ResponseBody
     public MsgBean queryByTerm(@ModelAttribute Donate donate, @PathVariable int page) {
-        logger.info("收到一个query请求参数为{donate:"+donate+"}");
+        logger.info("收到一个search请求参数为{donate:"+donate+"}");
 
         return donateService.selectByTerm(donate,page);
     }

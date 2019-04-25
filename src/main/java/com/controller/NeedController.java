@@ -62,10 +62,10 @@ public class NeedController{
         return needService.selectByUserId(userId, status,page);
     }
 
-    @RequestMapping(value = "/query/{page}" ,method = RequestMethod.GET)
+    @RequestMapping(value = "/search/{page}" ,method = RequestMethod.GET)
     @ResponseBody
     public MsgBean queryByTerm(@ModelAttribute Need need, @PathVariable int page) {
-        logger.info("收到一个query请求参数为{need:"+need+"}");
+        logger.info("收到一个search请求参数为{need:"+need+"}");
 
         return needService.selectByTerm(need,page);
     }
