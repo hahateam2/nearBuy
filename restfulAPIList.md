@@ -248,3 +248,8 @@ PUT http://127.0.0.1:8080/nearstBuy_war/mobile/User/
 DELETE http://127.0.0.1:8080/nearstBuy_war/mobile/User/{id}
 #### 分页获取用户列表
 GET http://127.0.0.1:8080/nearstBuy_war/mobile/User/{page}/{pagesize}
+
+
+### 需求
+
+#### 通过id查询用户
