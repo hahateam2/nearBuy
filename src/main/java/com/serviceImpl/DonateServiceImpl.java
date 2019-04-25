@@ -130,7 +130,7 @@ public class DonateServiceImpl implements DonateService {
         donate.setStatus("捐赠");
 
         if(donateMapper.insertSelective(donate)>0){
-            return new MsgBean(true,"插入数据成功",true);
+            return new MsgBean(true,"插入数据成功",id);
         }else {
             return new MsgBean(true,"插入数据失败",false);
         }

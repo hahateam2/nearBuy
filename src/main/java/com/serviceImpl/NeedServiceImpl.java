@@ -130,7 +130,7 @@ public class NeedServiceImpl implements NeedService{
         need.setStatus("需求");
 
         if(needMapper.insertSelective(need)>0){
-            return new MsgBean(true,"插入数据成功",true);
+            return new MsgBean(true,"插入数据成功",id);
         }else {
             return new MsgBean(true,"插入数据失败",false);
         }

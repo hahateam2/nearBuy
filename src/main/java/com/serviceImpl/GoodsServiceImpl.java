@@ -45,7 +45,7 @@ public class GoodsServiceImpl extends BaseServiceImpl<Goods> implements GoodsSer
         }
 
         if(goodsMapper.insertSelective(goods)>0){
-            return new MsgBean(true,"插入数据成功",true);
+            return new MsgBean(true,"插入数据成功",id);
         }else {
             return new MsgBean(true,"插入数据失败",false);
         }
