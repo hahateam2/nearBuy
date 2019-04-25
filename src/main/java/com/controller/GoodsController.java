@@ -6,12 +6,15 @@ import com.model.User;
 import com.service.GoodsService;
 
 
+import com.util.MyUtil;
 import com.util.UUIDgenarater;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -39,8 +42,14 @@ public class GoodsController extends BaseController<Goods> {
 
     @RequestMapping(value = "/",method = RequestMethod.POST)
     @ResponseBody
-    public MsgBean instertById(@ModelAttribute Goods goods) {
-        goods.setId(new UUIDgenarater().getUUID());
+    public MsgBean instertById(@ModelAttribute Goods goods,HttpServletRequest request) {
+        if(MyUtil.getServerPath()==null){
+//        获取本项目在磁盘中的真实路径
+            String realPath = request.getSession().getServletContext().getRealPath("/");
+//        保存
+            MyUtil.setServerPath(realPath);
+        }
+
         return super.instertById(goods, goodsService,goodsMapper);
     }
 

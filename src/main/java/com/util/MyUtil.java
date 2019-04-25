@@ -1,12 +1,28 @@
 package com.util;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.UUID;
 
 public class MyUtil {
+
+    /**
+     * 保存本web服务项目在磁盘中的真实路径
+     */
+    private static String serverPath;
+
+    public static void setServerPath(String path){
+        serverPath = path;
+    }
+    public static String getServerPath(){
+        return serverPath;
+    }
+
     /**
      * 生成UUID,32位
      * @return id
@@ -59,4 +75,42 @@ public class MyUtil {
         return DigestUtils.md5Hex(psw);
     }
 
+    /**
+     * 将文件存入磁盘中,路径在本项项目WebContent目录下
+     */
+    public static String fileSave(MultipartFile file, String path){
+        String realPath = MyUtil.getServerPath() + path;
+        File targetDir = new File(realPath);
+        if(!targetDir.exists()){
+            targetDir.mkdirs();
+        }
+
+//        获得原文件名
+        String fileName = file.getOriginalFilename();
+//        获得原文件后缀名
+        String fileSuffix = fileName.substring(fileName.lastIndexOf(".")+1);
+//        防止文件重名,随机生成文件的存储名
+        String memoryName = MyUtil.getUUID()+"."+fileSuffix;
+
+//        生成文件src路径，存入数据库中
+        String src = path + memoryName;
+        File targetFile = new File(realPath,memoryName);
+//         保存到磁盘
+        try {
+            file.transferTo(targetFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return src;
+    }
+
+    /**
+     * 删除本项目下的文件
+     */
+    public static void deleteFile(String path){
+        String absolutePath = serverPath + path;
+        File file = new File(absolutePath);
+        file.delete();
+    }
 }

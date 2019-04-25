@@ -1,11 +1,28 @@
 package com.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
+
 public class Goodsvideo {
     private String id;
 
     private String goodsid;
 
     private String image;
+
+
+    private List<MultipartFile> videoFiles;
+
+
+    public List<MultipartFile> getVideoFiles() {
+        return videoFiles;
+    }
+
+    public void setVideoFiles(List<MultipartFile> videoFiles) {
+        this.videoFiles = videoFiles;
+    }
+
 
     public String getId() {
         return id;

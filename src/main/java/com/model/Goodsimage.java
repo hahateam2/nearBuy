@@ -1,5 +1,10 @@
 package com.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.LinkedList;
+import java.util.List;
+
 public class Goodsimage {
     private String id;
 
@@ -8,6 +13,30 @@ public class Goodsimage {
     private String image;
 
     private String type;
+
+    private List<MultipartFile> imageFiles;
+
+    /**
+     * 每张图片的类型描述,如主图，物品图，详情图等
+     */
+    private List<String> imageType = new LinkedList<>();
+
+
+    public List<MultipartFile> getImageFiles() {
+        return imageFiles;
+    }
+
+    public void setImageFiles(List<MultipartFile> imageFiles) {
+        this.imageFiles = imageFiles;
+    }
+
+    public List<String> getImageType() {
+        return imageType;
+    }
+
+    public void setImageType(List<String> imageType) {
+        this.imageType = imageType;
+    }
 
     public String getId() {
         return id;
