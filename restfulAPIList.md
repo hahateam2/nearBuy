@@ -252,4 +252,109 @@ GET http://127.0.0.1:8080/nearstBuy_war/mobile/User/{page}/{pagesize}
 
 ### 需求
 
-#### 通过id查询用户
+#### 通过id查询需求
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/{id}
+#### 增加需求
+POST http://127.0.0.1:8080/nearstBuy_war/mobile/need/
+```
+发送参数(例)
+{
+userid:ce14098412814a4da9e5c3a720c04b31 （用户id）
+name:篮球
+depict:需要一个篮球，要求不多，能打就行 (对需求物品的描述)
+addressid:315646461316846945165 （地址信息id）
+}
+```
+#### 通过主键修改需求
+PUT http://127.0.0.1:8080/nearstBuy_war/mobile/need/
+#### 通过主键删除需求
+DELETE http://127.0.0.1:8080/nearstBuy_war/mobile/need/{id}
+#### 获取全部需求列表，分页    
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/all/{page}
+
+参数说明：(page：指定第几页，page=0 时查询所有不分页，下同)
+
+#### 通过关键字查询需求列表，分页 
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/search/{word}/{page}
+
+参数说明：(word：要查询的关键字)
+
+#### 获取指定用户的全部需求列表，分页   
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/{userId}/{page}
+
+参数说明：(userId：用户id，下同)
+
+#### 获取指定用户的指定状态的需求列表，分页
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/{userId}/{status}/{page}
+
+参数说明：(status：需求的状态，有以下几种：需求：需求中；暂停：暂停中；完成：已完成；封禁：被管理员封禁）
+
+#### 复合查询：关键字、用户、状态 三个条件（可空，可任意组合），分页
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/search/{page}
+```
+发送参数(例)
+{
+userid:ce14098412814a4da9e5c3a720c04b31 （用户id）
+name:篮球 （要查询的关键字）
+status：需求
+}
+```
+#### 复合查询记录的数量：关键字、用户、状态 三个条件（可空，可任意组合），分页
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/search/{page}
+
+发送参数 同上 的 复合查询
+
+
+### 捐赠
+
+#### 通过id查询捐赠
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/{id}
+#### 增加捐赠
+POST http://127.0.0.1:8080/nearstBuy_war/mobile/donate/
+```
+发送参数(例)
+{
+userid:ce14098412814a4da9e5c3a720c04b31 （用户id）
+name:篮球
+depict:捐一个篮球，不是多好，但能打 (对捐赠物品的描述)
+addressid:315646461316846945165 （地址信息id）
+}
+```
+#### 通过主键修改捐赠
+PUT http://127.0.0.1:8080/nearstBuy_war/mobile/donate/
+#### 通过主键删除捐赠
+DELETE http://127.0.0.1:8080/nearstBuy_war/mobile/donate/{id}
+#### 获取全部捐赠列表，分页    
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/all/{page}
+
+参数说明：(page：指定第几页，page=0 时查询所有不分页，下同)
+
+#### 通过关键字查询捐赠列表，分页 
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/search/{word}/{page}
+
+参数说明：(word：要查询的关键字)
+
+#### 获取指定用户的全部捐赠列表，分页   
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/{userId}/{page}
+
+参数说明：(userId：用户id，下同)
+
+#### 获取指定用户的指定状态的捐赠列表，分页
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/{userId}/{status}/{page}
+
+参数说明：(status：捐赠的状态，有以下几种：捐赠：捐赠中；暂停：暂停中；完成：已完成；封禁：被管理员封禁）
+
+#### 复合查询：关键字、用户、状态 三个条件（可空，可任意组合），分页
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/search/{page}
+```
+发送参数(例)
+{
+userid:ce14098412814a4da9e5c3a720c04b31 （用户id）
+name:篮球 （要查询的关键字）
+status：捐赠
+}
+```
+#### 复合查询记录的数量：关键字、用户、状态 三个条件（可空，可任意组合），分页
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/search/{page}
+
+发送参数 同上 的 复合查询
