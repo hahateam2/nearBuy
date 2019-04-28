@@ -24,6 +24,12 @@ public class GoodsimageController extends BaseController<Goodsimage>  {
         return super.queryById(id, goodsimageService,goodsimageMapper);
     }
 
+    @RequestMapping(value = "goods/{goodsid}/{type}",method = RequestMethod.GET)
+    @ResponseBody
+    public MsgBean queryByGoodsId(@PathVariable("goodsid")String goodsid, @PathVariable String type) {
+        return goodsimageService.queryByGoodsId(goodsid, type);
+    }
+
     @RequestMapping(value = "/{page}/{count}",method = RequestMethod.GET)
     @ResponseBody
     public MsgBean queryAllByPage(@PathVariable("page") int page, @PathVariable("count") int count) {

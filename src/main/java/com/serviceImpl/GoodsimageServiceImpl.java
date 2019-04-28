@@ -2,17 +2,16 @@ package com.serviceImpl;
 
 import com.dao.BaseDao;
 import com.dao.GoodsimageMapper;
-import com.model.Goods;
-import com.model.Goodsimage;
+import com.model.*;
 
-import com.model.Goodsvideo;
-import com.model.MsgBean;
 import com.service.GoodsimageService;
 import com.util.MyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -108,5 +107,19 @@ public class GoodsimageServiceImpl extends BaseServiceImpl<Goodsimage> implement
         MyUtil.deleteFile(goodsimage2.getImage());
 
         return new MsgBean(true,"删除数据成功",true);
+    }
+
+    @Override
+    public MsgBean queryByGoodsId(String goodsid, String type) {
+        GoodsimageExample example = new GoodsimageExample();
+        GoodsimageExample.Criteria criteria = example.createCriteria();
+
+        criteria.andGoodsidEqualTo(goodsid);
+        criteria.andTypeEqualTo(type);
+        example.setOrderByClause("createTime desc");
+
+        List<Goodsimage> goodsimages = goodsimageMapper.selectByExample(example);
+
+        return new MsgBean(true, "查询数据成功", goodsimages);
     }
 }

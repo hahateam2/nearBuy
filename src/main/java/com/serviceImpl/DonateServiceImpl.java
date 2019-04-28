@@ -22,9 +22,9 @@ public class DonateServiceImpl implements DonateService {
     @Autowired
     private DonateMapper donateMapper;
 
-    private MsgBean pageExecute(DonateExample example,int page){
+    private MsgBean pageExecute(DonateExample example,int page,int count){
         example.setOrderByClause("createTime desc");
-        Page page1 = new Page(page);
+        Page page1 = new Page(page,count);
         if(page>0){
             example.setPage(page1);
         }
@@ -49,39 +49,39 @@ public class DonateServiceImpl implements DonateService {
     }
 
     @Override
-    public MsgBean selectAllByPage(int page) {
+    public MsgBean selectAllByPage(int page,int count) {
         DonateExample example = new DonateExample();
 
-        return pageExecute(example,page);
+        return pageExecute(example,page, count);
     }
 
     @Override
-    public MsgBean selectByWord(String word, int page) {
+    public MsgBean selectByWord(String word, int page,int count) {
         DonateExample example = new DonateExample();
         example.or().andNameLike("%%"+word+"%%");
         example.or().andDepictLike("%%"+word+"%%");
 
-        return pageExecute(example,page);
+        return pageExecute(example,page, count);
     }
 
     @Override
-    public MsgBean selectByUserId(String id,int page) {
+    public MsgBean selectByUserId(String id,int page,int count) {
         DonateExample example = new DonateExample();
         example.createCriteria().andUseridEqualTo(id);
 
-        return pageExecute(example,page);
+        return pageExecute(example,page, count);
     }
 
     @Override
-    public MsgBean selectByUserId(String id, String status, int page) {
+    public MsgBean selectByUserId(String id, String status, int page,int count) {
         DonateExample example = new DonateExample();
         example.createCriteria().andUseridEqualTo(id).andStatusEqualTo(status);
 
-        return pageExecute(example,page);
+        return pageExecute(example,page, count);
     }
 
     @Override
-    public MsgBean selectByTerm(Donate donate, int page) {
+    public MsgBean selectByTerm(Donate donate, Page page) {
         DonateExample example =new DonateExample();
         DonateExample.Criteria criteria = example.createCriteria();
 
@@ -95,7 +95,7 @@ public class DonateServiceImpl implements DonateService {
             criteria.andStatusEqualTo(donate.getStatus());
         }
 
-        return pageExecute(example,page);
+        return pageExecute(example,page.getpage(), page.getPageRows());
     }
 
     @Override

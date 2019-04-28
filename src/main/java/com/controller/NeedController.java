@@ -2,7 +2,9 @@ package com.controller;
 
 import com.model.MsgBean;
 import com.model.Need;
+import com.pojo.Page;
 import com.service.NeedService;
+import com.sun.tracing.dtrace.Attributes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,48 +30,45 @@ public class NeedController{
         return needService.selectById(id);
     }
 
-
-    @RequestMapping(value = "all/{page}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{page}/{count}" ,method = RequestMethod.GET)
     @ResponseBody
-    public MsgBean queryAllByPage(@PathVariable("page") int page) {
-        logger.info("收到一个all请求参数为{page:"+page+"}");
+    public MsgBean selectAllByPage(@PathVariable int page,@PathVariable int count) {
+        logger.info("收到一个query请求参数为{page:"+page+"}");
 
-//        return super.queryAllByPage(page, count, needService,needMapper);
-        return needService.selectAllByPage(page);
+        return needService.selectAllByPage(page, count);
     }
 
-    @RequestMapping(value = "/search/{word}/{page}", method = RequestMethod.GET)
+    @RequestMapping(value = "/search/{word}/{page}/{count}", method = RequestMethod.GET)
     @ResponseBody
-    public MsgBean searchByWord(@PathVariable String word,@PathVariable int page) {
+    public MsgBean searchByWord(@PathVariable String word, @PathVariable int page,@PathVariable int count) {
         logger.info("收到一个search请求参数为{word:"+word+"}");
 
-        return needService.selectByWord(word, page);
+        return needService.selectByWord(word, page, count);
     }
 
-    @RequestMapping(value = "/{userId}/{page}" ,method = RequestMethod.GET)
+    @RequestMapping(value = "/user/{userId}/{page}/{count}" ,method = RequestMethod.GET)
     @ResponseBody
-    public MsgBean queryUserNeed(@PathVariable String userId , @PathVariable int page) {
-        logger.info("收到一个/请求参数为{userId:"+userId+"}");
+    public MsgBean queryUserNeed(@PathVariable String userId , @PathVariable int page,@PathVariable int count) {
+        logger.info("收到一个user请求参数为{userId:"+userId+"}");
 
-        return needService.selectByUserId(userId,page);
+        return needService.selectByUserId(userId, page, count);
     }
 
-    @RequestMapping(value = "/{userId}/{status}/{page}" ,method = RequestMethod.GET)
+    @RequestMapping(value = "/user/{userId}/{status}/{page}/{count}" ,method = RequestMethod.GET)
     @ResponseBody
-    public MsgBean queryUserNeedByStatus(@PathVariable String userId, @PathVariable String status, @PathVariable int page) {
-        logger.info("收到一个/请求参数为{userId:"+userId+"}{status:"+status+"}");
+    public MsgBean queryUserNeedByStatus(@PathVariable String userId, @PathVariable String status, @PathVariable int page,@PathVariable int count) {
+        logger.info("收到一个user请求参数为{userId:"+userId+"}{status:"+status+"}");
 
-        return needService.selectByUserId(userId, status,page);
+        return needService.selectByUserId(userId, status, page, count);
     }
 
-    @RequestMapping(value = "/search/{page}" ,method = RequestMethod.GET)
+    @RequestMapping(value = "/query/" ,method = RequestMethod.GET)
     @ResponseBody
-    public MsgBean queryByTerm(@ModelAttribute Need need, @PathVariable int page) {
-        logger.info("收到一个search请求参数为{need:"+need+"}");
+    public MsgBean queryByTerm(@ModelAttribute Need need, @ModelAttribute Page page) {
+        logger.info("收到一个query请求参数为{need:"+need+"}");
 
-        return needService.selectByTerm(need,page);
+        return needService.selectByTerm(need, page);
     }
-
 
 
     @RequestMapping(value = "/count" ,method = RequestMethod.GET)

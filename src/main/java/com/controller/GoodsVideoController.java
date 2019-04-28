@@ -24,6 +24,12 @@ public class GoodsVideoController extends BaseController<Goodsvideo>{
         return super.queryById(id, goodsVideoService,goodsvideoMapper);
     }
 
+    @RequestMapping(value = "goods/video/{goodsid}",method = RequestMethod.GET)
+    @ResponseBody
+    public MsgBean queryByGoodsId(@PathVariable("goodsid")String goodsid) {
+        return goodsVideoService.queryByGoodsId(goodsid);
+    }
+
     @RequestMapping(value = "/{page}/{count}",method = RequestMethod.GET)
     @ResponseBody
     public MsgBean queryAllByPage(@PathVariable("page") int page, @PathVariable("count") int count) {

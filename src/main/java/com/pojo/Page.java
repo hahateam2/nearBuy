@@ -3,7 +3,7 @@ package com.pojo;
 
 public class Page {
 //	默认为查询第一页
-	private int curPage=1;
+	private int page=1;
 //	默认一页十条记录
 	private int pageRows=10;
 
@@ -17,22 +17,22 @@ public class Page {
 	
 	
 	public Page() {}
-	public Page(int curPage) {
+	public Page(int page) {
 		super();
-		this.curPage = curPage >= 0 ? curPage : 1;
+		this.page = page > 0 ? page : 0;
 	}
-	public Page(int curPage,int pageRows) {
+	public Page(int page,int pageRows) {
 		super();
-		this.curPage = curPage >= 0 ? curPage : 1;
+		this.page = page > 0 ? page : 0;
 		this.pageRows = pageRows > 0 ? pageRows : 10;
 	}
 	
 	
-	public int getCurPage() {
-		return curPage;
+	public int getpage() {
+		return page;
 	}
-	public void setCurPage(int curPage) {
-		this.curPage = curPage;
+	public void setpage(int page) {
+		this.page = page;
 	}
 	public int getPageRows() {
 		return pageRows;
@@ -50,7 +50,7 @@ public class Page {
 	
 	
 	public int getStartRow() {
-		return this.pageRows*(this.curPage-1);
+		return this.pageRows*(this.page-1);
 	}
 
 	public int getEndRow() {

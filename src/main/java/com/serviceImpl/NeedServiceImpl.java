@@ -23,9 +23,9 @@ public class NeedServiceImpl implements NeedService{
     private NeedMapper needMapper;
 
 
-    private MsgBean pageExecute(NeedExample needExample,int page){
+    private MsgBean pageExecute(NeedExample needExample,int page,int count){
         needExample.setOrderByClause("createTime desc");
-        Page page1 = new Page(page);
+        Page page1 = new Page(page,count);
         if(page>0){
             needExample.setPage(page1);
         }
@@ -50,39 +50,39 @@ public class NeedServiceImpl implements NeedService{
     }
 
     @Override
-    public MsgBean selectAllByPage(int page) {
+    public MsgBean selectAllByPage(int page,int count) {
         NeedExample example = new NeedExample();
 
-        return pageExecute(example,page);
+        return pageExecute(example,page, count);
     }
 
     @Override
-    public MsgBean selectByWord(String word, int page) {
+    public MsgBean selectByWord(String word, int page,int count) {
         NeedExample example = new NeedExample();
         example.or().andNameLike("%%"+word+"%%");
         example.or().andDepictLike("%%"+word+"%%");
 
-        return pageExecute(example,page);
+        return pageExecute(example,page, count);
     }
 
     @Override
-    public MsgBean selectByUserId(String userId, int page) {
+    public MsgBean selectByUserId(String userId, int page,int count) {
         NeedExample example = new NeedExample();
         example.createCriteria().andUseridEqualTo(userId);
 
-        return pageExecute(example,page);
+        return pageExecute(example,page, count);
     }
 
     @Override
-    public MsgBean selectByUserId(String userId, String status, int page) {
+    public MsgBean selectByUserId(String userId, String status, int page,int count) {
         NeedExample example = new NeedExample();
         example.createCriteria().andUseridEqualTo(userId).andStatusEqualTo(status);
 
-        return pageExecute(example,page);
+        return pageExecute(example,page , count);
     }
 
     @Override
-    public MsgBean selectByTerm(Need need, int page) {
+    public MsgBean selectByTerm(Need need, Page page) {
         NeedExample example = new NeedExample();
         NeedExample.Criteria criteria = example.createCriteria();
 
@@ -96,7 +96,7 @@ public class NeedServiceImpl implements NeedService{
             criteria.andStatusEqualTo(need.getStatus());
         }
 
-        return pageExecute(example,page);
+        return pageExecute(example,page.getpage(),page.getPageRows());
     }
 
     @Override

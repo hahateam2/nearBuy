@@ -2,6 +2,7 @@ package com.controller;
 
 import com.model.Donate;
 import com.model.MsgBean;
+import com.pojo.Page;
 import com.service.DonateService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,43 +28,43 @@ public class DonateController {
         return donateService.selectById(id);
     }
 
-    @RequestMapping(value = "all/{page}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{page}/{count}",method = RequestMethod.GET)
     @ResponseBody
-    public MsgBean queryAllByPage(@PathVariable("page") int page) {
+    public MsgBean queryAllByPage(@PathVariable("page") int page,@PathVariable int count) {
         logger.info("收到一个all请求参数为{page:"+page+"}");
 
 //        return super.queryAllByPage(page, count, needService,needMapper);
-        return donateService.selectAllByPage(page);
+        return donateService.selectAllByPage(page, count);
     }
 
-    @RequestMapping(value = "/search/{word}/{page}", method = RequestMethod.GET)
+    @RequestMapping(value = "/search/{word}/{page}/{count}", method = RequestMethod.GET)
     @ResponseBody
-    public MsgBean searchByWord(@PathVariable String word,@PathVariable int page) {
+    public MsgBean searchByWord(@PathVariable String word,@PathVariable int page,@PathVariable int count) {
         logger.info("收到一个search请求参数为{word:"+word+"}");
 
-        return donateService.selectByWord(word, page);
+        return donateService.selectByWord(word, page, count);
     }
 
-    @RequestMapping(value = "/{userId}/{page}",method = RequestMethod.GET)
+    @RequestMapping(value = "/user/{userId}/{page}/{count}",method = RequestMethod.GET)
     @ResponseBody
-    public MsgBean queryUserDonate(@PathVariable String userId, @PathVariable int page) {
+    public MsgBean queryUserDonate(@PathVariable String userId, @PathVariable int page,@PathVariable int count) {
         logger.info("收到一个/请求参数为{userId:"+userId+"}");
 
-        return donateService.selectByUserId(userId,page);
+        return donateService.selectByUserId(userId,page, count);
     }
 
-    @RequestMapping(value = "/{userId}/{status}/{page}",method = RequestMethod.GET)
+    @RequestMapping(value = "/user/{userId}/{status}/{page}/{count}",method = RequestMethod.GET)
     @ResponseBody
-    public MsgBean queryUserDonateByStatus(@PathVariable String userId, @PathVariable String status, @PathVariable int page) {
+    public MsgBean queryUserDonateByStatus(@PathVariable String userId, @PathVariable String status, @PathVariable int page,@PathVariable int count) {
         logger.info("收到一个/请求参数为{userId:"+userId+"} {status:"+status+"}");
 
-        return donateService.selectByUserId(userId, status, page);
+        return donateService.selectByUserId(userId, status, page, count);
     }
 
 
-    @RequestMapping(value = "/search/{page}" ,method = RequestMethod.GET)
+    @RequestMapping(value = "/query/" ,method = RequestMethod.GET)
     @ResponseBody
-    public MsgBean queryByTerm(@ModelAttribute Donate donate, @PathVariable int page) {
+    public MsgBean queryByTerm(@ModelAttribute Donate donate, @ModelAttribute Page page) {
         logger.info("收到一个search请求参数为{donate:"+donate+"}");
 
         return donateService.selectByTerm(donate,page);

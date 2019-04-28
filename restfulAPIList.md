@@ -183,13 +183,22 @@ GET http://127.0.0.1:8080/nearstBuy_war/mobile/Comment/{page}/{pagesize}
 GET http://127.0.0.1:8080/nearstBuy_war/Goodsimage/Goods/{id}
 #### 增加商品图片
 POST http://127.0.0.1:8080/nearstBuy_war/Goodsimage/Goods/
+```
+参数列表
+{
+    goodsid:（所属商品id）
+    imageFiles：（图片文件，支持同时上传多张图片）
+    type:（对每张图片，都有一个类型描述，如"物品"对应物品的真实图片，"详情"对应物品的详情图片，参见淘宝）
+}
+```
 #### 通过主键修改商品图片
 PUT http://127.0.0.1:8080/nearstBuy_war/Goodsimage/Goods/
 #### 通过主键删除商品图片
 DELETE http://127.0.0.1:8080/nearstBuy_war/Goodsimage/Goods/{id}
 #### 分页获取商品图片列表
 GET http://127.0.0.1:8080/nearstBuy_war/mobile/Goodsimage/{page}/{pagesize}
-
+#### 获取 指定商品 指定类型 的图片列表
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/Goodsimage/goods/{goodsid}/{type}
 
 
 ### 商品视频
@@ -198,6 +207,13 @@ GET http://127.0.0.1:8080/nearstBuy_war/mobile/Goodsimage/{page}/{pagesize}
 GET http://127.0.0.1:8080/nearstBuy_war/mobile/GoodsVideo/{id}
 #### 增加商品
 POST http://127.0.0.1:8080/nearstBuy_war/mobile/GoodsVideo/
+```
+参数列表
+{
+    goodsid:（所属商品id）
+    videoFiles：（视频文件，支持同时上传多个视频）
+}
+```
 #### 通过主键修改商品视频
 PUT http://127.0.0.1:8080/nearstBuy_war/mobile/GoodsVideo/
 #### 通过主键删除商品视频
@@ -257,10 +273,10 @@ GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/{id}
 #### 增加需求
 POST http://127.0.0.1:8080/nearstBuy_war/mobile/need/
 ```
-发送参数(例)
+发送参数列表(例)
 {
 userid:ce14098412814a4da9e5c3a720c04b31 （用户id）
-name:篮球
+name:篮球 （需求物品的名字）
 depict:需要一个篮球，要求不多，能打就行 (对需求物品的描述)
 addressid:315646461316846945165 （地址信息id）
 }
@@ -269,40 +285,64 @@ addressid:315646461316846945165 （地址信息id）
 PUT http://127.0.0.1:8080/nearstBuy_war/mobile/need/
 #### 通过主键删除需求
 DELETE http://127.0.0.1:8080/nearstBuy_war/mobile/need/{id}
-#### 获取全部需求列表，分页    
-GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/all/{page}
 
-参数说明：(page：指定第几页，page=0 时查询所有不分页，下同)
+#### 获取全部需求列表，分页    
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/{page}/{count}
+
+参数说明：(page：指定第几页，page=0 时查询所有不分页；count:指定每页记录的条数。下同)
 
 #### 通过关键字查询需求列表，分页 
-GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/search/{word}/{page}
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/search/{word}/{page}/{count}
 
 参数说明：(word：要查询的关键字)
 
 #### 获取指定用户的全部需求列表，分页   
-GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/{userId}/{page}
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/user/{userId}/{page}/{count}
 
 参数说明：(userId：用户id，下同)
 
 #### 获取指定用户的指定状态的需求列表，分页
-GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/{userId}/{status}/{page}
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/user/{userId}/{status}/{page}/{count}
 
 参数说明：(status：需求的状态，有以下几种：需求：需求中；暂停：暂停中；完成：已完成；封禁：被管理员封禁）
 
 #### 复合查询：关键字、用户、状态 三个条件（可空，可任意组合），分页
-GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/search/{page}
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/query/
 ```
-发送参数(例)
+发送参数列表(例)
 {
 userid:ce14098412814a4da9e5c3a720c04b31 （用户id）
 name:篮球 （要查询的关键字）
 status：需求
+page: 1 （查询指定页的记录，如不分页则不需要此参数）
+pageRows：5 (指定每页的记录条数，如不分页则不需要此参数，当指定page而不指定pageRows时，服务器默认每页10条记录)
 }
 ```
-#### 复合查询记录的数量：关键字、用户、状态 三个条件（可空，可任意组合），分页
-GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/search/{page}
+例：
+```
+查询所有，无条件，不分页：
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/query/
+查询所有，无条件，分页：
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/query/?page=1&pageRows=5
 
-发送参数 同上 的 复合查询
+关键字查询：
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/query/？name=乒乓
+关键字查询，分页：
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/query/？name=乒乓&page=1&pageRows=5
+
+查询 指定用户 所有需求：
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/query/？userid=484971626
+查询 指定用户 指定状态 的需求：
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/query/？userid=484971626&status=需求
+
+查询 指定用户 指定状态 带关键字 的需求：
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/query/？userid=484971626&status=需求&name=乒乓
+```
+
+#### 复合查询记录的数量：关键字、用户、状态 三个条件（可空，可任意组合），分页
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/need/count/
+
+发送参数及规则 同上 的 复合查询
 
 
 ### 捐赠
@@ -324,28 +364,23 @@ addressid:315646461316846945165 （地址信息id）
 PUT http://127.0.0.1:8080/nearstBuy_war/mobile/donate/
 #### 通过主键删除捐赠
 DELETE http://127.0.0.1:8080/nearstBuy_war/mobile/donate/{id}
-#### 获取全部捐赠列表，分页    
-GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/all/{page}
 
-参数说明：(page：指定第几页，page=0 时查询所有不分页，下同)
+#### 获取全部捐赠列表，分页    
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/{page}/{count}
 
 #### 通过关键字查询捐赠列表，分页 
-GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/search/{word}/{page}
-
-参数说明：(word：要查询的关键字)
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/search/{word}/{page}/{count}
 
 #### 获取指定用户的全部捐赠列表，分页   
-GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/{userId}/{page}
-
-参数说明：(userId：用户id，下同)
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/user/{userId}/{page}/{count}
 
 #### 获取指定用户的指定状态的捐赠列表，分页
-GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/{userId}/{status}/{page}
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/user/{userId}/{status}/{page}/{count}
 
 参数说明：(status：捐赠的状态，有以下几种：捐赠：捐赠中；暂停：暂停中；完成：已完成；封禁：被管理员封禁）
 
 #### 复合查询：关键字、用户、状态 三个条件（可空，可任意组合），分页
-GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/search/{page}
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/query/
 ```
 发送参数(例)
 {
@@ -354,7 +389,9 @@ name:篮球 （要查询的关键字）
 status：捐赠
 }
 ```
+参数规则同上
+
 #### 复合查询记录的数量：关键字、用户、状态 三个条件（可空，可任意组合），分页
-GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/search/{page}
+GET http://127.0.0.1:8080/nearstBuy_war/mobile/donate/count/
 
 发送参数 同上 的 复合查询
